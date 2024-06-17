@@ -3,15 +3,24 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import supabase from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const handleContinueWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+    const response = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo:"http://localhost:3000/auth/callback"
       }
     });
+
+
+    if (response.error) {
+      
+    }
+
   };
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center">
