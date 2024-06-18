@@ -3,24 +3,26 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import supabase from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Home() {
-  const router = useRouter();
+  const { toast } = useToast();
 
   const handleContinueWithGoogle = async () => {
     const response = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo:"http://localhost:3000/auth/callback"
-      }
+        redirectTo: "http://localhost:3000/auth/callback?next=/app",
+      },
     });
 
-
     if (response.error) {
-      
+      toast({
+        title: "Oh sugar! Authentication failed",
+        description: response.error.message,
+        variant: "destructive",
+      });
     }
-
   };
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center">

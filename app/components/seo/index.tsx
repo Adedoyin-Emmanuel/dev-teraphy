@@ -66,9 +66,7 @@ const Seo = ({ title, description, image, url, keywords }: SeoProps) => {
       <meta name="apple-mobile-web-app-title" content="Dev teraphy" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="msapplication-tap-highlight" content="no" />
-      <link rel="manifest" href="/manifest.json" />
       <link rel="shortcut icon" href="/favicon.ico" />
-
     </>
   );
 };
