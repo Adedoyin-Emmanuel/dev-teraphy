@@ -10,8 +10,8 @@ import {
   MessageCircleMore,
   Settings,
   LogOut,
-  User,
 } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 import { usePathname } from "next/navigation";
 
 interface SidenavProps {
@@ -106,8 +106,10 @@ const Sidenav = ({ children, className }: SidenavProps) => {
           </section>
         </section>
 
-        <section className="mt-5 mb-2">
-          <div className="w-full flex items-center gap-x-3 rounded border p-2 cursor-pointer">
+        <section className="mt-5">
+          <Separator />
+
+          <div className="w-full flex items-center gap-x-3 p-2 cursor-pointer">
             <img
               src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
               width={30}
