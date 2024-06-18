@@ -39,12 +39,6 @@ const Sidenav = ({ children, className }: SidenavProps) => {
   const sidebarItemsClass = `${baseClass} border-transparent ${hoverClass}`;
   const currentPathClass = `${baseClass} bg-slate-50`;
 
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   const SidebarContent = () => {
     return (
       <>
@@ -144,14 +138,14 @@ const Sidenav = ({ children, className }: SidenavProps) => {
   };
 
   return (
-    <div className="w-screen h-screen">
+    <div className="flex fixed">
       <div
-        className={`${className} md:w-3/12 lg:w-2/12 border h-screen fixed p-3 md:flex flex-col justify-between hidden`}
+        className={`${className} md:w-3/12 lg:w-2/12 border h-screen relative  p-3 md:flex flex-col justify-between hidden`}
       >
         <SidebarContent />
       </div>
 
-      <section className="fixed md:hidden">
+      <section className="md:hidden">
         <Drawer.Root direction="left">
           <div
             className={`border-b-[1px] border-secondary container-fluid backdrop-filter z-[100] backdrop-blur-md fixed top-0 right-0 left-0 ${className}`}
@@ -159,7 +153,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
             <section className="w-full flex items-center justify-between p-1">
               <Drawer.Trigger asChild>
                 <button
-                  className="inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-[#5A83ED] focus:outline-none"
+                  className="inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-primary focus:outline-none"
                   aria-expanded="false"
                 >
                   <span className="sr-only">Open main menu</span>
@@ -207,6 +201,13 @@ const Sidenav = ({ children, className }: SidenavProps) => {
             </Drawer.Content>
           </Drawer.Portal>
         </Drawer.Root>
+      </section>
+      <section className="relative h-screen overflow-y-scroll p-2 my-3">
+        <section className="md:hidden">
+          <br />
+          <br />
+        </section>
+        {children}
       </section>
     </div>
   );
