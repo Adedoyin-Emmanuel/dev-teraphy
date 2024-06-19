@@ -62,6 +62,31 @@ const Dashboard = async () => {
             <Text className="mt-2">15+ messages</Text>
           </section>
         </section>
+
+        <section className="recent my-10">
+          <h1 className="text-[20px] font-extrabold text-capitalize my-2">
+            Past appointments{" "}
+          </h1>
+          <section className="border rounded-md p-4 cursor-pointer flex items-center justify-between">
+            <section className="flex items-center gap-3">
+              <img
+                src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
+                width={30}
+                height={30}
+                alt="User profile"
+              />
+
+              <section>
+                <h2 className="text-[15px]">Quick call with Emmysoft</h2>
+                <Text className="text-slate-500 text-sm">2024/06/14</Text>
+              </section>
+            </section>
+
+            <div className="border rounded-md w-auto h-auto flex p-1 items-center justify-center">
+              <MessageCircleMore strokeWidth={1.5} size={20} />
+            </div>
+          </section>
+        </section>
       </section>
       <br className="md:hidden" />
       <section className="xl:w-2/6 lg:w-4/6">

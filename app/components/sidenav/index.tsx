@@ -54,7 +54,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
           </section>
           <Link
             className={
-              currentPath == "/app" ? currentPathClass : sidebarItemsClass
+              currentPath == "/dashboard" ? currentPathClass : sidebarItemsClass
             }
             href={"/dashboard"}
           >
