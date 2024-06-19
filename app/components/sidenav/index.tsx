@@ -54,9 +54,9 @@ const Sidenav = ({ children, className }: SidenavProps) => {
           </section>
           <Link
             className={
-              currentPath.includes("app") ? currentPathClass : sidebarItemsClass
+              currentPath == "/app" ? currentPathClass : sidebarItemsClass
             }
-            href={"/app"}
+            href={"/app/teraphists"}
           >
             <Gauge strokeWidth={1.5} size={20} />
             <Text>Dashboard</Text>
