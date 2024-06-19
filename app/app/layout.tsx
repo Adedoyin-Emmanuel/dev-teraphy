@@ -6,11 +6,7 @@ export default function AppLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <Suspense>
-      <section className="w-screen h-screen scroll-smooth">
-        <section className="w-full">
-          <Sidenav>{children}</Sidenav>
-        </section>
-      </section>
+      <Sidenav>{children}</Sidenav>
     </Suspense>
   );
 }

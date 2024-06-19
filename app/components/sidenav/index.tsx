@@ -41,7 +41,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
 
   const SidebarContent = () => {
     return (
-      <>
+      <div className="border-r-[1px] flex flex-col justify-between h-full p-3">
         <section className="-mx-1">
           <section className="flex items-center gap-x-2 mt-3 mb-4 mx-1">
             <Image
@@ -128,24 +128,24 @@ const Sidenav = ({ children, className }: SidenavProps) => {
 
               <div>
                 <strong>Adedoyin Emmanuel</strong>
-                <p className="text-sm text-slate-600">adedoyine535@gmail.com</p>
+                <p className="text-[13px] text-slate-600">
+                  adedoyine535@gmail.com
+                </p>
               </div>
             </div>
           </section>
         </section>
-      </>
+      </div>
     );
   };
 
   return (
-    <div className="flex fixed">
-      <div
-        className={`${className} md:w-3/12 lg:w-2/12 border h-screen relative  p-3 md:flex flex-col justify-between hidden`}
-      >
+    <div className="h-screen w-screen flex ">
+      <section className="md:flex hidden">
         <SidebarContent />
-      </div>
+      </section>
 
-      <section className="md:hidden">
+      <section className="md:hidden ">
         <Drawer.Root direction="left">
           <div
             className={`border-b-[1px] border-secondary container-fluid backdrop-filter z-[100] backdrop-blur-md fixed top-0 right-0 left-0 ${className}`}
@@ -196,13 +196,14 @@ const Sidenav = ({ children, className }: SidenavProps) => {
 
           <Drawer.Portal>
             <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-            <Drawer.Content className="bg-white flex flex-col justify-between h-full w-3/4 p-3 mt-24 fixed bottom-0">
+            <Drawer.Content className="bg-white flex flex-col justify-between h-full w-3/4 mt-24 fixed bottom-0 z-[1000]">
               <SidebarContent />
             </Drawer.Content>
           </Drawer.Portal>
         </Drawer.Root>
       </section>
-      <section className="relative h-screen overflow-y-scroll p-2 my-3">
+
+      <section className="p-3 w-full md:w-3/4 lg:w-11/12 overflow-y-auto ">
         <section className="md:hidden">
           <br />
           <br />
