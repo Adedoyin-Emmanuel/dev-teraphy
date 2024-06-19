@@ -67,7 +67,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
                 ? currentPathClass
                 : sidebarItemsClass
             }
-            href={"/teraphists"}
+            href={"/app/teraphists"}
           >
             <Brain strokeWidth={1.5} size={20} />
             <Text>Teraphists</Text>
@@ -78,7 +78,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
                 ? currentPathClass
                 : sidebarItemsClass
             }
-            href={"/appointments"}
+            href={"/app/appointments"}
           >
             <Video strokeWidth={1.5} size={20} />
             <Text>Appointments</Text>
@@ -89,7 +89,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
                 ? currentPathClass
                 : sidebarItemsClass
             }
-            href={"/messages"}
+            href={"/app/messages"}
           >
             <MessageCircleMore strokeWidth={1.5} size={20} />
             <Text>Messages</Text>
@@ -104,7 +104,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
                   ? currentPathClass
                   : sidebarItemsClass
               }
-              href={"/settings"}
+              href={"/app/settings"}
             >
               <Settings strokeWidth={1.5} size={20} />
               <Text>Settings</Text>
