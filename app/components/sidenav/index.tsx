@@ -25,6 +25,7 @@ import { usePathname } from "next/navigation";
 import supabase from "@/utils/supabase/client";
 import { Drawer } from "vaul";
 import { User } from "@supabase/supabase-js";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface SidenavProps {
   children: React.ReactNode;
@@ -42,6 +43,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
   const currentPathClass = `${baseClass} bg-slate-50`;
 
   const [currentUser, setCurrentUser] = React.useState<User>();
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   const fetchData = async () => {
     const {
@@ -51,7 +53,9 @@ const Sidenav = ({ children, className }: SidenavProps) => {
   };
 
   React.useEffect(() => {
+    setLoading(true);
     fetchData().then((user) => {
+      setLoading(false);
       setCurrentUser(user as User);
     });
   }, []);
@@ -135,21 +139,31 @@ const Sidenav = ({ children, className }: SidenavProps) => {
           <section className="mt-5">
             <Separator />
 
-            <div className="w-full flex items-center gap-x-3 p-2 cursor-pointer">
-              <img
-                src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
-                width={30}
-                height={30}
-                alt="User profile"
-              />
+            {loading ? (
+              <Skeleton className="w-full flex items-center gap-x-3 p-2  my-2">
+                <div>
+                  <Skeleton className="h-4 w-[250px]" />
+                  <Skeleton className="h-4 w-[250px]" />
+                </div>
+              </Skeleton>
+            ) : (
+              <div className="w-full flex items-center gap-x-3 p-2 cursor-pointer">
+                <img
+                  src={currentUser?.user_metadata?.avatar_url}
+                  width={35}
+                  height={35}
+                  alt="User profile"
+                  className="rounded-full"
+                />
 
-              <div>
-                <strong>{currentUser?.user_metadata.full_name}</strong>
-                <p className="text-[13px] text-slate-600">
-                  adedoyine535@gmail.com
-                </p>
+                <div>
+                  <strong>{currentUser?.user_metadata.full_name}</strong>
+                  <p className="text-[13px] text-slate-600">
+                    {currentUser?.user_metadata.email}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </section>
         </section>
       </div>
@@ -193,13 +207,17 @@ const Sidenav = ({ children, className }: SidenavProps) => {
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <img
-                    src={currentUser?.user_metadata?.avatar_url}
-                    width={30}
-                    height={30}
-                    alt="User profile"
-                    className="mx-2"
-                  />
+                  {loading ? (
+                    <Skeleton className="w-10 h-10 rounded-full" />
+                  ) : (
+                    <img
+                      src={currentUser?.user_metadata?.avatar_url}
+                      width={35}
+                      height={35}
+                      alt="User profile"
+                      className="mx-2 rounded-full"
+                    />
+                  )}
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent>

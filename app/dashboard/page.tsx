@@ -13,6 +13,9 @@ import {
 } from "@/components/ui/card";
 import Text from "../components/text";
 import { Video, MessageCircleMore } from "lucide-react";
+
+import Loader from "@/app/components/loader";
+
 const Dashboard = async () => {
   const { toast } = useToast();
   const router = useRouter();
@@ -62,6 +65,7 @@ const Dashboard = async () => {
             <Text className="mt-2">15+ messages</Text>
           </section>
         </section>
+
 
         <section className="recent my-10">
           <h1 className="text-[20px] font-extrabold text-capitalize my-2">
