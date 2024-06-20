@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Text from "../components/text";
+import Text from "@/app/components/text";
 import AppointmentCard from "@/app/components/appointment-card";
 
 const Appointments = () => {

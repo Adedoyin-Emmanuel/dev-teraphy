@@ -12,7 +12,7 @@ export default function Home() {
     const response = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3000/auth/callback?next=/app",
+        redirectTo: "http://localhost:3000/auth/callback?next=/dashboard",
       },
     });
 

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
-import Sidenav from "@/app/components/sidenav";
 import { Toaster } from "@/components/ui/toaster";
-import { Suspense } from "react";
+
 
 const inter = Bricolage_Grotesque({ subsets: ["latin"], weight: "300" });
 
@@ -27,9 +26,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Toaster />
-        <Suspense>
-          <Sidenav>{children}</Sidenav>
-        </Suspense>
+
+        {children}
       </body>
     </html>
   );

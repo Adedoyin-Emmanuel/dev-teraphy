@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Text from "../components/text";
+import Text from "@/app/components/text";
 
 const Messages = () => {
   const pathname = usePathname();

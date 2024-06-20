@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { type CookieOptions, createServerClient } from "@supabase/ssr";
+import supabase from "@/utils/supabase/client";
+import { Axios } from "@/app/api/axios";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -28,6 +30,20 @@ export async function GET(request: Request) {
     );
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const response = await Axios.put("/auth/user", {
+        email: user?.email,
+        name: user?.user_metadata?.full_name,
+        role: "user",
+        googleId: user?.id,
+      });
+
+      if (!response) {
+        return NextResponse.redirect(`${origin}/auth/error`);
+      }
       return NextResponse.redirect(`${origin}${next}`);
     }
   }

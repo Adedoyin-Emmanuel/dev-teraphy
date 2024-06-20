@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Text from "../components/text";
+import Text from "@/app/components/text";
 import TeraphistCard from "@/app/components/teraphist-card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";

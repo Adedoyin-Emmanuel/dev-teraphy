@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Text from "@/app/components/text";
 import Link from "next/link";
@@ -41,24 +41,23 @@ const Sidenav = ({ children, className }: SidenavProps) => {
     "hover:border-[1px] hover:border-[#e5e7eb] hover:bg-slate-50";
   const sidebarItemsClass = `${baseClass} border-transparent ${hoverClass}`;
   const currentPathClass = `${baseClass} bg-slate-50`;
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [currentUser, setCurrentUser] = React.useState<User>();
-  const [loading, setLoading] = React.useState<boolean>(true);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
     return user;
-  };
+  }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLoading(true);
     fetchData().then((user) => {
       setLoading(false);
       setCurrentUser(user as User);
     });
-  }, []);
+  }, [fetchData]);
 
   const SidebarContent = () => {
     return (

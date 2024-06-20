@@ -1,30 +1,65 @@
 "use client";
 import { useToast } from "@/components/ui/use-toast";
+import React from "react";
 import supabase from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Text from "../components/text";
-import { Video, MessageCircleMore } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
-import Loader from "@/app/components/loader";
+import Text from "@/app/components/text";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Video, MessageCircleMore } from "lucide-react";
 
 const Dashboard = async () => {
   const { toast } = useToast();
   const router = useRouter();
+  const [showTeraphistDialog, setShowTeraphistDialog] =
+    React.useState<boolean>(false);
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  console.log(user);
+  const TeraphistDialog = () => {
+    return (
+      <Dialog open={showTeraphistDialog} onOpenChange={setShowTeraphistDialog}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Name
+              </Label>
+              <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="username" className="text-right">
+                Username
+              </Label>
+              <Input id="username" value="@peduarte" className="col-span-3" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button type="submit">Save changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  };
 
   return (
     <div className="w-full flex xl:flex-row flex-col  justify-between p-1 flex-wrap">
@@ -94,6 +129,7 @@ const Dashboard = async () => {
         </section>
       </section>
       <br className="md:hidden" />
+      <TeraphistDialog />
       <section className="xl:w-2/6 lg:w-4/6">
         <h1 className="text-[20px] font-extrabold text-capitalize">Schedule</h1>
 
@@ -137,6 +173,22 @@ const Dashboard = async () => {
               <MessageCircleMore strokeWidth={1.5} size={20} />
             </div>
           </section>
+        </section>
+
+        <section className="teraphist my-3">
+          <h1 className="text-[18px] font-extrabold text-capitalize">
+            Become a teraphist
+          </h1>
+
+          <Button
+            className="w-full"
+            variant={"outline"}
+            onClick={() => {
+              setShowTeraphistDialog(true);
+            }}
+          >
+            Proceed
+          </Button>
         </section>
       </section>
     </div>

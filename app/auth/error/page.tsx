@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const AuthCodeError = () => {
   return (
@@ -7,7 +8,9 @@ const AuthCodeError = () => {
 
       <p>An error occured during authentication</p>
 
-      <Button className="w-10/12 md:w-56 my-2">Go back</Button>
+      <Link href={"/"}>
+        <Button className="w-10/12 md:w-56 my-2">Go back</Button>
+      </Link>
     </div>
   );
 };
