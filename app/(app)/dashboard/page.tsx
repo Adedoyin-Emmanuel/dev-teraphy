@@ -29,38 +29,9 @@ const Dashboard = async () => {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const TeraphistDialog = () => {
-    return (
-      <Dialog open={showTeraphistDialog} onOpenChange={setShowTeraphistDialog}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" value="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
-              </Label>
-              <Input id="username" value="@peduarte" className="col-span-3" />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button type="submit">Save changes</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    );
+  const handleButtonClick = () => {
+    setShowTeraphistDialog(true);
   };
-
   return (
     <div className="w-full flex xl:flex-row flex-col  justify-between p-1 flex-wrap">
       <section className="">
@@ -129,7 +100,6 @@ const Dashboard = async () => {
         </section>
       </section>
       <br className="md:hidden" />
-      <TeraphistDialog />
       <section className="xl:w-2/6 lg:w-4/6">
         <h1 className="text-[20px] font-extrabold text-capitalize">Schedule</h1>
 
@@ -183,9 +153,7 @@ const Dashboard = async () => {
           <Button
             className="w-full"
             variant={"outline"}
-            onClick={() => {
-              setShowTeraphistDialog(true);
-            }}
+            onClick={handleButtonClick}
           >
             Proceed
           </Button>
