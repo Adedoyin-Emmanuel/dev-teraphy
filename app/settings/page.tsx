@@ -1,16 +1,17 @@
 
-"use client"
+
 import React from "react";
 
-interface SettingsProps {
-    
-}
 
-const Settings = ()=> {
+
+const Settings = () => {
+
+    
 
     return (
         <div>
             <h1>Settings works!</h1>
+            
         </div>
     );  
 }
