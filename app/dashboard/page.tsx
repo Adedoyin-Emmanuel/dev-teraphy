@@ -24,6 +24,8 @@ const Dashboard = async () => {
     data: { user },
   } = await supabase.auth.getUser();
 
+  console.log(user);
+
   return (
     <div className="w-full flex xl:flex-row flex-col  justify-between p-1 flex-wrap">
       <section className="">
@@ -65,7 +67,6 @@ const Dashboard = async () => {
             <Text className="mt-2">15+ messages</Text>
           </section>
         </section>
-
 
         <section className="recent my-10">
           <h1 className="text-[20px] font-extrabold text-capitalize my-2">
