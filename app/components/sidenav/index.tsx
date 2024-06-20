@@ -22,7 +22,9 @@ import {
 
 import { Separator } from "@/components/ui/separator";
 import { usePathname } from "next/navigation";
+import supabase from "@/utils/supabase/client";
 import { Drawer } from "vaul";
+import { User } from "@supabase/supabase-js";
 
 interface SidenavProps {
   children: React.ReactNode;
@@ -38,6 +40,21 @@ const Sidenav = ({ children, className }: SidenavProps) => {
     "hover:border-[1px] hover:border-[#e5e7eb] hover:bg-slate-50";
   const sidebarItemsClass = `${baseClass} border-transparent ${hoverClass}`;
   const currentPathClass = `${baseClass} bg-slate-50`;
+
+  const [currentUser, setCurrentUser] = React.useState<User>();
+
+  const fetchData = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    return user;
+  };
+
+  React.useEffect(() => {
+    fetchData().then((user) => {
+      setCurrentUser(user as User);
+    });
+  }, []);
 
   const SidebarContent = () => {
     return (
@@ -127,7 +144,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
               />
 
               <div>
-                <strong>Adedoyin Emmanuel</strong>
+                <strong>{currentUser?.user_metadata.full_name}</strong>
                 <p className="text-[13px] text-slate-600">
                   adedoyine535@gmail.com
                 </p>
@@ -177,7 +194,7 @@ const Sidenav = ({ children, className }: SidenavProps) => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <img
-                    src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
+                    src={currentUser?.user_metadata?.avatar_url}
                     width={30}
                     height={30}
                     alt="User profile"
